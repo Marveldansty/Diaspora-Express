@@ -1,0 +1,376 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --blue: #0b3d91;
+    --red: #d62828;
+    --text: #1e293b;
+    --soft: #f5f7fb;
+}
+
+/* ================= BODY ================= */
+body {
+    color: var(--text);
+    background: #fff;
+    line-height: 1.5;
+}
+
+/* ================= HEADER ================= */
+.header-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: var(--blue);
+    transition: 0.3s;
+}
+
+.header-nav.scrolled {
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.header-nav.scrolled a {
+    color: var(--blue);
+}
+
+.logo img {
+    width: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+}
+
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 22px;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.header-nav a:hover {
+    color: var(--red);
+}
+
+/* ================= HERO ================= */
+.hero {
+    height: 92vh;
+    margin-top: 65px;
+    background:
+        linear-gradient(rgba(0,0,0,0.65), rgba(11,61,145,0.7)),
+        url('../images/ChatGPT\ Image\ Apr\ 16\,\ 2026\,\ 11_14_54\ AM.png') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* ================= BUTTONS ================= */
+.hero-buttons {
+    margin-top: 20px;
+}
+
+.hero-buttons button {
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #fff;
+    color: var(--blue);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: var(--red);
+    color: white;
+}
+
+.secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* ================= TRACK ================= */
+.track-box {
+    margin-top: 18px;
+}
+
+.track-box input {
+    padding: 12px;
+    width: 240px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.track-box button {
+    padding: 12px 14px;
+    border: none;
+    background: var(--red);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* ================= STATUS ================= */
+.status-box {
+    display: none;
+    margin-top: 20px;
+}
+
+.step {
+    width: 210px;
+    margin: 6px auto;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    transition: 0.3s;
+}
+
+.step.active {
+    background: white;
+    color: var(--blue);
+    font-weight: 600;
+}
+
+/* ================= ROUTE ================= */
+.route {
+    display: none;
+    margin-top: 10px;
+    color: #ffd700;
+    font-size: 14px;
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-wrapper {
+    margin-top: 25px;
+    display: none;
+    position: relative;
+}
+
+.progress-line {
+    position: absolute;
+    top: 18px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: rgba(255,255,255,0.25);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.p-step {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    transition: 0.3s;
+}
+
+.p-step span {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.p-step.active {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* ================= INFO ================= */
+.info {
+    padding: 70px 20px;
+    text-align: center;
+    background: var(--soft);
+}
+
+/* ================= SERVICES ================= */
+.services {
+    padding: 80px 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    padding: 22px;
+    border-radius: 12px;
+    background: #eef3ff;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ================= TRUST ================= */
+.trust {
+    padding: 80px 20px;
+    background: var(--blue);
+    color: white;
+    text-align: center;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.trust-card {
+    background: rgba(255,255,255,0.12);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ================= FOOTER ================= */
+.me-footer {
+    background: #0b3d91;
+    color: white;
+    padding: 70px 20px 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+}
+.me-logo img{
+    width: 55px;
+    border: 2px solid red;
+    border-radius: 50%;
+}
+
+.me-footer-block h4 {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.me-footer-block h4::after {
+    content: "";
+    width: 35px;
+    height: 3px;
+    background: var(--red);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+}
+
+.me-footer-block ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.me-footer-block ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.me-footer-block a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.me-footer-block a:hover {
+    color: var(--red);
+}
+
+.me-footer-share {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.me-footer-share li a {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    color: white;
+}
+
+/* FOOTER BOTTOM */
+.me-footer-bottom {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+.footer-links a{
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .grid-3,
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .track-box input {
+        width: 180px;
+    }
+}

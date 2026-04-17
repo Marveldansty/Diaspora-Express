@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diaspora Express</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="./images/diaspora.jpg" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header-nav">
+
+        <div class="logo">
+            <img src="images/diaspora.jpg" alt="logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#service">Services</a></li>
+                <li><a href="#track">Track</a></li>
+                <li><a href="#trust">Trust</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Global Shipping Made Simple</h1>
+            <p>Fast, secure and real-time logistics tracking worldwide</p>
+
+            <div class="hero-buttons">
+                <button class="primary">Ship Now</button>
+                <button class="secondary">Track Package</button>
+            </div>
+
+            <!-- TRACK -->
+            <div class="track-box" id="track">
+                <input type="text" id="trackInput" placeholder="Enter Tracking ID (DX123 / DX999)">
+                <button onclick="trackPackage()">Track</button>
+            </div>
+            
+
+            <p id="loading"></p>
+            <p id="result"></p>
+
+            <!-- ROUTE -->
+            <div class="route" id="route">
+                Lagos → Accra → London → Destination
+            </div>
+
+            <!-- STATUS -->
+            <div class="status-box" id="statusBox">
+                <div class="step">Pending</div>
+                <div class="step">Picked Up</div>
+                <div class="step">In Transit</div>
+                <div class="step">Delivered</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= INFO ================= -->
+    <section class="info">
+        <h2>Fast. Secure. Reliable.</h2>
+        <p>We deliver across 100+ countries with real-time tracking updates.</p>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="services" id="service">
+
+        <h2 class="title">Our Services</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Global Shipping</h3>
+                <p>International delivery with speed and safety.</p>
+            </div>
+
+            <div class="card">
+                <h3>Live Tracking</h3>
+                <p>Real-time shipment updates.</p>
+            </div>
+
+            <div class="card">
+                <h3>Door Delivery</h3>
+                <p>From pickup to destination.</p>
+            </div>
+
+            <div class="card">
+                <h3>Trusted Network</h3>
+                <p>Secure global logistics system.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= TRUST ================= -->
+    <section class="trust" id="trust">
+
+        <h2 class="title white">Why Trust Us</h2>
+
+        <div class="grid-3">
+
+            <div class="trust-card">
+                <h3>4000+</h3>
+                <p>Deliveries</p>
+            </div>
+
+            <div class="trust-card">
+                <h3>100+</h3>
+                <p>Countries</p>
+            </div>
+
+            <div class="trust-card">
+                <h3>99%</h3>
+                <p>Success Rate</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="me-footer">
+
+        <div class="footer-container">
+
+            <div class="me-footer-block">
+
+                <div class="me-logo">
+                    <img src="images/diaspora.jpg" alt="logo">
+                </div>
+
+                <h4>Diaspora Express</h4>
+
+                <p style="font-size:14px; margin-top:10px;">
+                    Fast global logistics & real-time tracking system.
+                </p>
+
+                <ul class="me-footer-share">
+                    <li><a href="#">f</a></li>
+                    <li><a href="#">t</a></li>
+                    <li><a href="#">in</a></li>
+                    <li><a href="#">ig</a></li>
+                </ul>
+
+            </div>
+
+            <div class="me-footer-block">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Global Shipping</a></li>
+                    <li><a href="#">Tracking System</a></li>
+                    <li><a href="#">Door Delivery</a></li>
+                    <li><a href="#">Cargo Freight</a></li>
+                </ul>
+            </div>
+
+            <div class="me-footer-block">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Network</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="me-footer-block">
+                <h4>Contact</h4>
+                <ul>
+                    <li>📍 Lagos, Nigeria</li>
+                    <li>📞 +234 800 000 0000</li>
+                    <li class="me-footer-email">✉ support@diasporaexpress.com</li>
+                    <li>🕒 24/7 Support</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="me-footer-bottom">
+            <p>© 2026 Diaspora Express. All Rights Reserved.</p>
+
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Help</a>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+
+<script>
+    function trackPackage() {
+
+        const input = document.getElementById("trackInput");
+        const loading = document.getElementById("loading");
+        const result = document.getElementById("result");
+        const statusBox = document.getElementById("statusBox");
+        const route = document.getElementById("route");
+
+        loading.innerText = "Checking shipment...";
+        result.innerText = "";
+
+        statusBox.style.display = "none";
+        route.style.display = "none";
+
+        setTimeout(() => {
+
+            loading.innerText = "";
+            statusBox.style.display = "block";
+            route.style.display = "block";
+
+            reset();
+
+            if (input.value === "DX123") {
+                result.innerText = "In Transit (Lagos Hub)";
+                setActive(2);
+            }
+
+            else if (input.value === "DX999") {
+                result.innerText = "Delivered Successfully";
+                setActive(3);
+            }
+
+            else if (input.value === "") {
+                result.innerText = "Enter tracking ID";
+            }
+
+            else {
+                result.innerText = "Shipment not found";
+                setActive(0);
+            }
+
+        }, 1200);
+    }
+
+    function setActive(index) {
+        const steps = document.querySelectorAll(".step");
+        steps.forEach((step, i) => {
+            step.classList.toggle("active", i <= index);
+        });
+    }
+
+    function reset() {
+        document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+    }
+
+    /* HEADER SCROLL EFFECT */
+    window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header-nav");
+        header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+</script>
+
+</html>
