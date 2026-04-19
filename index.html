@@ -4,267 +4,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diaspora Express</title>
+    <title>Diaspora Express - Logistics Platform</title>
+    <link rel="stylesheet" href="css/fontawesome.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="./images/diaspora.jpg" type="image/x-icon">
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
-    <header class="header-nav">
-
-        <div class="logo">
-            <img src="images/diaspora.jpg" alt="logo">
+    <!-- ================= NAV ================= -->
+    <header>
+        <div class="brand">
+            <div class="brand-badge">
+                <img src="images/diaspora.jpg" width="55" style="border-radius: 50%; border: 2px solid red;">
+            </div>
+            Diaspora Express
         </div>
-
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#service">Services</a></li>
-                <li><a href="#track">Track</a></li>
-                <li><a href="#trust">Trust</a></li>
-            </ul>
-        </nav>
-
     </header>
 
     <!-- ================= HERO ================= -->
     <section class="hero">
 
-        <div class="hero-content">
+        <div class="hero-left">
+            <h1>Diaspora Express Logistics Platform</h1>
+            <p>Streamlined logistics solutions powering global shipping, cargo handling, and delivery intelligence
+                across 200+ countries.</p>
 
-            <h1>Global Shipping Made Simple</h1>
-            <p>Fast, secure and real-time logistics tracking worldwide</p>
-
-            <div class="hero-buttons">
-                <button class="primary">Ship Now</button>
-                <button class="secondary">Track Package</button>
+            <div class="hero-actions">
+                <button class="btn light" onclick="goToShipment()">Get Pricing</button>
+                <button class="btn outline">Watch Demo</button>
             </div>
 
-            <!-- TRACK -->
-            <div class="track-box" id="track">
-                <input type="text" id="trackInput" placeholder="Enter Tracking ID (DX123 / DX999)">
-                <button onclick="trackPackage()">Track</button>
+            <div class="track-box">
+                <input type="text" placeholder="Enter Tracking ID">
+                <button>Track</button>
             </div>
-            
+        </div>
 
-            <p id="loading"></p>
-            <p id="result"></p>
-
-            <!-- ROUTE -->
-            <div class="route" id="route">
-                Lagos → Accra → London → Destination
-            </div>
-
-            <!-- STATUS -->
-            <div class="status-box" id="statusBox">
-                <div class="step">Pending</div>
-                <div class="step">Picked Up</div>
-                <div class="step">In Transit</div>
-                <div class="step">Delivered</div>
-            </div>
-
+        <div class="hero-card">
+            <h3>Diaspora Express Network</h3>
+            <p>✔ 200+ Countries</p>
+            <p>✔ Real-time Tracking</p>
+            <p>✔ Secure Logistics Infrastructure</p>
         </div>
 
     </section>
 
-    <!-- ================= INFO ================= -->
-    <section class="info">
-        <h2>Fast. Secure. Reliable.</h2>
-        <p>We deliver across 100+ countries with real-time tracking updates.</p>
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+        <div class="cta-box">
+            <h2>Start Shipping Globally in Minutes</h2>
+            <p>Join thousands of businesses using Diaspora Express infrastructure.</p>
+            <button class="cta-btn js-get-started">Get Started</button>
+        </div>
     </section>
+
+    <!-- ================= TOAST ================= -->
+    <div id="toast"></div>
+
+    <!-- ================= LOGIN MODAL ================= -->
+    <div class="modal" id="loginModal">
+        <div class="modal-box">
+            <h2>Login</h2>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button id="loginSubmit">Login</button>
+            <p class="close">Close</p>
+        </div>
+    </div>
+
+    <!-- ================= PARTNERS ================= -->
+    <div class="partners">
+        DHL • FedEx • UPS • Aramex • Maersk • Paystack • Lori • UPS
+    </div>
 
     <!-- ================= SERVICES ================= -->
-    <section class="services" id="service">
-
-        <h2 class="title">Our Services</h2>
+    <section class="section">
+        <h2>Platform Solutions</h2>
+        <p class="sub">Everything you need to run global logistics at scale</p>
 
         <div class="grid">
+            <div class="card">Ship Now Pay Later</div>
+            <div class="card">Developer API</div>
+            <div class="card">International Shipping</div>
+            <div class="card">Local Shipping</div>
+            <div class="card">Cargo Services</div>
+            <div class="card">Insurance</div>
+        </div>
+    </section>
+    <!-- ================= FAQ ================= -->
+    <section class="section">
+        <h2>Frequently Asked Questions</h2>
 
-            <div class="card">
-                <h3>Global Shipping</h3>
-                <p>International delivery with speed and safety.</p>
+        <div class="faq">
+
+            <div class="faq-item">
+                How does Diaspora Express work?
+                <div class="answer">
+                    We connect you to global courier networks and manage your shipping from pickup to delivery.
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Live Tracking</h3>
-                <p>Real-time shipment updates.</p>
+            <div class="faq-item">
+                Do you support international shipping?
+                <div class="answer">
+                    Yes, we ship to over 200+ countries worldwide with real-time tracking.
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Door Delivery</h3>
-                <p>From pickup to destination.</p>
-            </div>
-
-            <div class="card">
-                <h3>Trusted Network</h3>
-                <p>Secure global logistics system.</p>
+            <div class="faq-item">
+                Can I track my shipment?
+                <div class="answer">
+                    Yes, just enter your tracking ID in the tracking box above.
+                </div>
             </div>
 
         </div>
-
     </section>
+    <!-- ================= PRICING =================
+    <section class="pricing" id="pricing">
+        <h2>Instant Shipping Estimate</h2>
 
-    <!-- ================= TRUST ================= -->
-    <section class="trust" id="trust">
-
-        <h2 class="title white">Why Trust Us</h2>
-
-        <div class="grid-3">
-
-            <div class="trust-card">
-                <h3>4000+</h3>
-                <p>Deliveries</p>
-            </div>
-
-            <div class="trust-card">
-                <h3>100+</h3>
-                <p>Countries</p>
-            </div>
-
-            <div class="trust-card">
-                <h3>99%</h3>
-                <p>Success Rate</p>
-            </div>
-
+        <div class="price-box">
+            <input type="number" id="kg" placeholder="Weight (KG)">
+            <select id="country">
+                <option value="local">Nigeria</option>
+                <option value="africa">Africa</option>
+                <option value="global">International</option>
+            </select>
+            <button>Calculate</button>
+            <h3 id="priceResult"></h3>
         </div>
+    </section> -->
 
-    </section>
-
+    <!-- ================= LOGIN BUTTON ================= -->
+    <button class="login-btn">Sign In</button>
     <!-- ================= FOOTER ================= -->
-    <footer class="me-footer">
+    <footer>
+        <div class="me-footer">
+            <div class="row">
 
-        <div class="footer-container">
-
-            <div class="me-footer-block">
-
-                <div class="me-logo">
-                    <img src="images/diaspora.jpg" alt="logo">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="me-footer-block">
+                        <div class="me-logo">
+                            <a href="#">
+                                <img src="images/diaspora.jpg" class="img-fluid" style="border-radius: 60%;">
+                            </a>
+                        </div>
+                        <h3>Contact Us Via</h3>
+                        <ul class="me-footer-share">
+                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <h4>Diaspora Express</h4>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="me-footer-block">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Cargo Handling</a></li>
+                            <li><a href="#">Tracking</a></li>
+                            <li><a href="#">Insurance</a></li>
+                            <li><a href="#">Logistics API</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-                <p style="font-size:14px; margin-top:10px;">
-                    Fast global logistics & real-time tracking system.
-                </p>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="me-footer-block">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#">About Diaspora Express</a></li>
+                            <li><a href="#">Our Network</a></li>
+                            <li><a href="#">Global Coverage</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-                <ul class="me-footer-share">
-                    <li><a href="#">f</a></li>
-                    <li><a href="#">t</a></li>
-                    <li><a href="#">in</a></li>
-                    <li><a href="#">ig</a></li>
-                </ul>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="me-footer-block">
+                        <h4>Address</h4>
+                        <ul>
+                            <li>📍 Lagos, Nigeria</li>
+                            <li>📞 +234 XXX XXX XXXX</li>
+                            <li>✉ support@diasporaexpress.com</li>
+                            <li>🕒 24/7 Support</li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
-
-            <div class="me-footer-block">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Global Shipping</a></li>
-                    <li><a href="#">Tracking System</a></li>
-                    <li><a href="#">Door Delivery</a></li>
-                    <li><a href="#">Cargo Freight</a></li>
-                </ul>
-            </div>
-
-            <div class="me-footer-block">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Network</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-
-            <div class="me-footer-block">
-                <h4>Contact</h4>
-                <ul>
-                    <li>📍 Lagos, Nigeria</li>
-                    <li>📞 +234 800 000 0000</li>
-                    <li class="me-footer-email">✉ support@diasporaexpress.com</li>
-                    <li>🕒 24/7 Support</li>
-                </ul>
-            </div>
-
         </div>
 
         <div class="me-footer-bottom">
-            <p>© 2026 Diaspora Express. All Rights Reserved.</p>
+            <span>© 2026 Diaspora Express — Built for global logistics</span>
 
-            <div class="footer-links">
+            <div>
                 <a href="#">Privacy</a>
                 <a href="#">Terms</a>
-                <a href="#">Help</a>
+                <a href="#">Support</a>
             </div>
         </div>
-
     </footer>
+    <script>
+        function goToShipment() {
+    window.location.href = "shipment.html";
+}
+        document.addEventListener("DOMContentLoaded", () => {
 
-</body>
+            const $ = (q) => document.querySelector(q);
 
-<script>
-    function trackPackage() {
+            const toast = $("#toast");
+            const loginModal = $("#loginModal");
+            const pricingSection = $("#pricing");
 
-        const input = document.getElementById("trackInput");
-        const loading = document.getElementById("loading");
-        const result = document.getElementById("result");
-        const statusBox = document.getElementById("statusBox");
-        const route = document.getElementById("route");
+            let toastTimer;
 
-        loading.innerText = "Checking shipment...";
-        result.innerText = "";
+            function showToast(msg) {
+                if (!toast) return alert(msg);
+                clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.style.display = "block";
 
-        statusBox.style.display = "none";
-        route.style.display = "none";
-
-        setTimeout(() => {
-
-            loading.innerText = "";
-            statusBox.style.display = "block";
-            route.style.display = "block";
-
-            reset();
-
-            if (input.value === "DX123") {
-                result.innerText = "In Transit (Lagos Hub)";
-                setActive(2);
+                toastTimer = setTimeout(() => {
+                    toast.style.display = "none";
+                }, 2000);
             }
 
-            else if (input.value === "DX999") {
-                result.innerText = "Delivered Successfully";
-                setActive(3);
+            function openModal() {
+                loginModal.style.display = "flex";
             }
 
-            else if (input.value === "") {
-                result.innerText = "Enter tracking ID";
+            function closeModal() {
+                loginModal.style.display = "none";
             }
 
-            else {
-                result.innerText = "Shipment not found";
-                setActive(0);
+            // ===== LOGIN =====
+            const loginBtn = $(".login-btn");
+            const getStartedBtn = $(".js-get-started");
+            const closeBtn = $(".close");
+            const loginSubmit = $("#loginSubmit");
+
+            if (loginBtn) loginBtn.addEventListener("click", openModal);
+            if (getStartedBtn) getStartedBtn.addEventListener("click", openModal);
+            if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+            if (loginModal) {
+                loginModal.addEventListener("click", (e) => {
+                    if (e.target === loginModal) closeModal();
+                });
             }
 
-        }, 1200);
-    }
+            if (loginSubmit) {
+                loginSubmit.addEventListener("click", () => {
+                    showToast("Login successful 🚀");
+                    closeModal();
+                });
+            }
 
-    function setActive(index) {
-        const steps = document.querySelectorAll(".step");
-        steps.forEach((step, i) => {
-            step.classList.toggle("active", i <= index);
+            // ===== TRACKING =====
+            const trackBtn = $(".track-box button");
+            const input = $(".track-box input");
+
+            if (trackBtn) {
+                trackBtn.addEventListener("click", () => {
+                    if (!input.value) return showToast("Enter tracking ID");
+
+                    trackBtn.textContent = "Tracking...";
+                    setTimeout(() => {
+                        trackBtn.textContent = "Track";
+                        showToast("Shipment found 🚚");
+                    }, 1000);
+                });
+            }
+
+            // ===== PRICING =====
+            const calcBtn = $(".price-box button");
+            const kg = $("#kg");
+            const country = $("#country");
+            const result = $("#priceResult");
+
+            if (calcBtn) {
+                calcBtn.addEventListener("click", () => {
+                    const rates = { local: 800, africa: 2500, global: 6000 };
+                    const price = kg.value * rates[country.value];
+
+                    result.innerHTML = `₦${price.toLocaleString()}`;
+                    showToast("Price ready 🚀");
+                });
+            }
+
+            // ===== SCROLL =====
+            const pricingBtn = $(".btn.light");
+            if (pricingBtn) {
+                pricingBtn.addEventListener("click", () => {
+                    pricingSection.scrollIntoView({ behavior: "smooth" });
+                });
+            }
+
+            // ===== DEMO =====
+            const demoBtn = $(".btn.outline");
+            if (demoBtn) {
+                demoBtn.addEventListener("click", () => {
+                    showToast("Demo coming soon 🎬");
+                });
+            }
+
+        });
+        document.addEventListener("click", (e) => {
+    const faq = document.querySelector(".faq");
+
+    // if click is outside FAQ section
+    if (faq && !faq.contains(e.target)) {
+        document.querySelectorAll(".faq-item").forEach(item => {
+            item.classList.remove("active");
+
+            const answer = item.querySelector(".answer");
+            if (answer) {
+                answer.style.maxHeight = null;
+            }
         });
     }
+});
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll(".faq-item");
 
-    function reset() {
-        document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-    }
+            items.forEach(item => {
+                const answer = item.querySelector(".answer");
 
-    /* HEADER SCROLL EFFECT */
-    window.addEventListener("scroll", () => {
-        const header = document.querySelector(".header-nav");
-        header.classList.toggle("scrolled", window.scrollY > 50);
-    });
-</script>
+                item.style.cursor = "pointer";
+
+                item.addEventListener("click", () => {
+
+                    const isOpen = item.classList.contains("active");
+
+                    // close all
+                    items.forEach(i => {
+                        i.classList.remove("active");
+                        const ans = i.querySelector(".answer");
+                        if (ans) ans.style.maxHeight = null;
+                    });
+
+                    // open clicked
+                    if (!isOpen) {
+                        item.classList.add("active");
+                        if (answer) {
+                            answer.style.maxHeight = answer.scrollHeight + "px";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
 
 </html>
