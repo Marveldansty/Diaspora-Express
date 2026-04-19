@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diaspora Express</title>
+
+<style>
+:root{
+  --primary:#0b3d91;
+  --accent:#f97316;
+  --bg:#f8fafc;
+  --text:#1e293b;
+  --muted:#64748b;
+  --card:#ffffff;
+  --shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
+body{background:var(--bg);color:var(--text);}
+
+/* NAV */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:white;
+  box-shadow:var(--shadow);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.navbar h2{color:var(--primary);} 
+.navbar button{
+  background:var(--primary);
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:60px 20px;
+}
+.hero h1{font-size:42px;margin-bottom:10px;}
+.hero p{color:var(--muted);margin-bottom:20px;}
+.hero button{
+  padding:12px 25px;
+  border:none;
+  border-radius:8px;
+  background:var(--accent);
+  color:white;
+}
+.hero img{width:100%;max-width:450px;}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:40px 20px;
+}
+.feature{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+/* APP */
+.app{display:none;min-height:100vh;}
+.sidebar{
+  width:240px;
+  background:var(--primary);
+  color:white;
+  padding:20px;
+}
+.sidebar button{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:none;
+  border-radius:8px;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  text-align:left;
+  cursor:pointer;
+}
+
+.main{flex:1;padding:20px;}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
+.card{background:white;padding:18px;border-radius:12px;box-shadow:var(--shadow);}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+button.action{
+  width:100%;
+  padding:12px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.badge{
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  color:white;
+}
+.pending{background:#f59e0b;}
+.transit{background:#3b82f6;}
+.delivered{background:#22c55e;}
+
+.footer{text-align:center;padding:20px;color:var(--muted);}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;}
+  .features{grid-template-columns:1fr;}
+  .app{flex-direction:column;}
+  .sidebar{width:100%;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>Diaspora Express</h2>
+  <button onclick="enterApp()">Dashboard</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Ship Globally Without Stress</h1>
+    <p>Fast, secure and reliable logistics built for modern businesses.</p>
+    <button onclick="enterApp()">Start Shipping</button>
+  </div>
+  <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png" alt="shipping">
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature"><h3>Real-Time Tracking</h3><p>Track shipments instantly.</p></div>
+  <div class="feature"><h3>Fast Delivery</h3><p>Optimized routes for speed.</p></div>
+  <div class="feature"><h3>Secure Handling</h3><p>Reliable & safe transport.</p></div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+<div class="sidebar">
+  <button onclick="show('dash')">Dashboard</button>
+  <button onclick="show('create')">Create</button>
+  <button onclick="show('track')">Track</button>
+  <button onclick="show('admin')">Admin</button>
+</div>
+
+<div class="main">
+
+<!-- DASH -->
+<div id="dash" class="page">
+<div class="grid">
+<div class="card"><h3>Total</h3><h2 id="total">0</h2></div>
+<div class="card"><h3>Pending</h3><h2 id="pending">0</h2></div>
+<div class="card"><h3>Transit</h3><h2 id="transit">0</h2></div>
+<div class="card"><h3>Delivered</h3><h2 id="delivered">0</h2></div>
+</div>
+</div>
+
+<!-- CREATE -->
+<div id="create" class="page" style="display:none;">
+<div class="card">
+<input id="sender" placeholder="Sender">
+<input id="receiver" placeholder="Receiver">
+<input id="from" placeholder="Pickup">
+<input id="to" placeholder="Destination">
+
+<button class="action" onclick="create()">Create Shipment</button>
+
+<!-- ✅ FIX: tracking code shows here -->
+<h4 id="result" style="margin-top:10px;"></h4>
+</div>
+</div>
+
+<!-- TRACK -->
+<div id="track" class="page" style="display:none;">
+<div class="card">
+<input id="search" placeholder="Search">
+<button class="action" onclick="track()">Search</button>
+<div id="trackRes"></div>
+</div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="page" style="display:none;">
+<div class="card">
+<table>
+<thead>
+<tr><th>Sender</th><th>Route</th><th>Status</th><th></th></tr>
+</thead>
+<tbody id="table"></tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">© Diaspora Express</div>
+
+<script>
+
+let db=[];
+
+/* SHOW APP */
+function enterApp(){
+  document.querySelector('.hero').style.display='none';
+  document.querySelector('.features').style.display='none';
+  document.querySelector('.navbar').style.display='none';
+  document.getElementById('app').style.display='flex';
+}
+
+/* NAV */
+function show(p){
+  document.querySelectorAll('.page').forEach(x=>x.style.display='none');
+  document.getElementById(p).style.display='block';
+  render();
+  stats();
+}
+
+/* ID GEN */
+function genID(){
+  return "DE"+Math.floor(100000+Math.random()*900000);
+}
+
+/* CREATE */
+function create(){
+
+  let shipment={
+    id:genID(),
+    sender:sender.value,
+    receiver:receiver.value,
+    from:from.value,
+    to:to.value,
+    status:"Pending"
+  };
+
+  db.push(shipment);
+
+  // ✅ SHOW UNDER FORM (FIXED)
+  document.getElementById("result").innerHTML =
+    `Tracking Code: <b>${shipment.id}</b>`;
+
+  stats();
+}
+
+/* TRACK */
+function track(){
+
+  let val = search.value.toLowerCase();
+
+  let f = db.find(x =>
+    x.id.toLowerCase() === val ||
+    x.sender.toLowerCase().includes(val) ||
+    x.receiver.toLowerCase().includes(val)
+  );
+
+  if(!f){
+    trackRes.innerText="Shipment not found";
+    return;
+  }
+
+  trackRes.innerHTML=`
+    <b>${f.id}</b><br>
+    ${f.sender} → ${f.receiver}<br>
+    ${f.from} → ${f.to}
+  `;
+}
+
+/* ADMIN */
+function render(){
+  table.innerHTML=db.map((x,i)=>`
+    <tr>
+      <td>${x.sender}</td>
+      <td>${x.from} → ${x.to}</td>
+      <td><span class="badge ${x.status.toLowerCase()}">${x.status}</span></td>
+      <td><button onclick="update(${i})">Refresh</button></td>
+    </tr>
+  `).join('');
+}
+
+/* STATUS */
+function update(i){
+  if(db[i].status==="Pending") db[i].status="Transit";
+  else if(db[i].status==="Transit") db[i].status="Delivered";
+  render();
+  stats();
+}
+
+/* STATS */
+function stats(){
+  total.innerText=db.length;
+  pending.innerText=db.filter(x=>x.status==="Pending").length;
+  transit.innerText=db.filter(x=>x.status==="Transit").length;
+  delivered.innerText=db.filter(x=>x.status==="Delivered").length;
+}
+
+</script>
+
+</body>
+</html>
